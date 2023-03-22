@@ -13,23 +13,27 @@ public class BoundaryAcheterProduit {
 	}
 
 	public void acheterProduit(String nomAcheteur) {
-		String produit,marchandProduit,resultat;
-		int numeroMarchand, nbProduit;
+		String produit;
+		String marchandProduit;
+		String resultat;
+		int numeroMarchand;
+		int nbProduit;
 		boolean possedeProduit;
 		System.out.println("Quel produit voulez vous acheter ?");
 		produit = scan.next();
-		marchandProduit = controlAcheterProduit.AfficherEtalProduit(produit);
-		possedeProduit = marchandProduit.length() == 0;
+		possedeProduit = controlAcheterProduit.possedeProduits(produit);
 		if (possedeProduit) {
-			System.out.println("Desole mais personne ne vend ce produit au marche.");
+			System.out.println("Desole mais personne ne vend ce produit au marche.\n");
 		} else {
+			marchandProduit = controlAcheterProduit.AfficherEtalProduit(produit);
 			String nomVendeur;
 			numeroMarchand = Clavier
 					.entrerEntier("Chez quel commercant voulez vous acheter des " + produit + " ?\n" + marchandProduit);
 			nomVendeur = controlAcheterProduit.nomVendeur(produit, numeroMarchand);
 			System.out.println(nomAcheteur + " se deplace jusqu a l etal du vendeur " + nomVendeur);
 			nbProduit = Clavier.entrerEntier("Bonjour " + nomAcheteur + "\nCombien de " + produit + " voulez vous ?\n");
-			resultat = controlAcheterProduit.AcheterProduit(produit, numeroMarchand,nbProduit,nomAcheteur);
+			resultat = controlAcheterProduit.AcheterProduit(produit, numeroMarchand, nbProduit, nomAcheteur);
+			System.out.println(resultat + "\n");
 		}
 
 	}

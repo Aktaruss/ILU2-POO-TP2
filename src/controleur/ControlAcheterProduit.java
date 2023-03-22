@@ -24,12 +24,16 @@ public class ControlAcheterProduit {
 		return vendeurProduit(produit)[numero - 1].getNom();
 	}
 
+	public boolean possedeProduits(String produit) {
+		return vendeurProduit(produit) == null;
+	}
+
 	public String AfficherEtalProduit(String produit) {
 		StringBuilder chaine = new StringBuilder();
 		Gaulois[] gauloisProduit;
 		gauloisProduit = vendeurProduit(produit);
 		for (int i = 0; i < gauloisProduit.length; i++) {
-			chaine.append(i + " - " + gauloisProduit[i].getNom() + "\n");
+			chaine.append(i + 1 + " - " + gauloisProduit[i].getNom() + "\n");
 		}
 		return chaine.toString();
 	}
@@ -41,6 +45,7 @@ public class ControlAcheterProduit {
 		Etal etal;
 		int resultat;
 		String nomVendeur;
+		nomVendeur = nomVendeur(produit, numero);
 		gauloisProduit = vendeurProduit(produit);
 		gaulois = gauloisProduit[numero - 1];
 		etal = village.rechercherEtal(gaulois);
@@ -49,10 +54,11 @@ public class ControlAcheterProduit {
 			chaine.append(
 					nomAcheteur + " veut acheter " + quantite + " " + produit + " malheureusement il n y en a plus\n");
 		} else if (resultat < quantite) {
-			chaine.append(nomAcheteur + "veut acheter " + quantite + " " + produit
-					+ " malheureusement il n y en a pas suffisament\n"+nomAcheteur+" a acheter les "+resultat+" derniers.\n");
+			chaine.append(nomAcheteur + " veut acheter " + quantite + " " + produit
+					+ " malheureusement il n y en a pas suffisament\n" + nomAcheteur + " a acheter les " + resultat
+					+ " derniers.\n");
 		} else {
-			chaine.append(nomAcheteur+" a acheter "+resultat+" "+produit+" a ");
+			chaine.append(nomAcheteur + " a acheter " + resultat + " " + produit + " a " + nomVendeur + ".\n");
 		}
 		return chaine.toString();
 	}
