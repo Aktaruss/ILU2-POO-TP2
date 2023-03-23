@@ -15,6 +15,10 @@ public class ControlAcheterProduit {
 		this.controlVerifierIdentite = controlVerifierIdentite;
 		this.controlTrouverEtalVendeur = controlTrouverEtalVendeur;
 	}
+	
+	public boolean verifierIdentite(String acheteur) {
+		return controlVerifierIdentite.verifierIdentite(acheteur);
+	}
 
 	private Gaulois[] vendeurProduit(String produit) {
 		return village.rechercherVendeursProduit(produit);
@@ -28,7 +32,7 @@ public class ControlAcheterProduit {
 		return vendeurProduit(produit) == null;
 	}
 
-	public String AfficherEtalProduit(String produit) {
+	public String afficherEtalProduit(String produit) {
 		StringBuilder chaine = new StringBuilder();
 		Gaulois[] gauloisProduit;
 		gauloisProduit = vendeurProduit(produit);
@@ -38,7 +42,7 @@ public class ControlAcheterProduit {
 		return chaine.toString();
 	}
 
-	public String AcheterProduit(String produit, int numero, int quantite, String nomAcheteur) {
+	public String acheterProduit(String produit, int numero, int quantite, String nomAcheteur) {
 		StringBuilder chaine = new StringBuilder();
 		Gaulois[] gauloisProduit;
 		Gaulois gaulois;
